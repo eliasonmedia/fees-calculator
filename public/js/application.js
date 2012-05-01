@@ -111,6 +111,8 @@ var calc = function() {
 							'</div>' +
 						'</div>';
 
+	resultsBlock.append("<h2>Here's how much you'd be paying these gateways per transaction:</h2>");
+
 	// Define gateway prices
 	var costs = [
 		{
@@ -137,9 +139,12 @@ var calc = function() {
 		{
 			name: 'dwolla',
 			label: 'Dwolla',
+			url: 'http://www.dwolla.com',
 			variable: 0,
-			fixed: 0,
-			url: 'http://www.dwolla.com'
+			fixed: {
+				trigger: 10,
+				cost: 0.25
+			}
 		}
 	];
 
@@ -150,8 +155,10 @@ var calc = function() {
 				'html': resultBlock
 			});
 
+		// Calc costs
 		var variable = ((costs[i].variable / 100) * amount).formatMoney(2, '.', ','),
-			fixed = (costs[i].fixed).formatMoney(2, '.', ','),
+			isFixedObject = (typeof costs[i].fixed == 'object'),
+			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed).formatMoney(2, '.', ',') : 0,
 			total = (+variable + +fixed).formatMoney(2, '.', ',');
 
 		result
@@ -159,11 +166,20 @@ var calc = function() {
 				.attr('href', costs[i].url)
 				.attr('title', 'Checkout ' + costs[i].label + "'s site")
 				.end()
-			.find('.name h3').text(costs[i].label).end()
-			.find('.variable .top').text(costs[i].variable + '% * ' + amount + ' =').end()
-			.find('.variable p span').text(variable).end()
-			.find('.fixed p span').text(fixed).end()
-			.find('.total p span').text(total);
+			.find('.name h3')
+				.text(costs[i].label)
+				.end()
+			.find('.variable .top')
+				.text(costs[i].variable + '% * ' + amount + ' =')
+				.end()
+			.find('.variable p span')
+				.text(variable)
+				.end()
+			.find('.fixed p span')
+				.text(fixed)
+				.end()
+			.find('.total p span')
+				.text(total);
 
 		results.push({total: total, result: result});
 	};
@@ -172,23 +188,14 @@ var calc = function() {
 	results.sort(compare_total);
 
 	// Append to the document
-	var top = 0;
-
 	for (var i = results.length - 1; i >= 0; i--) {
 		results[i].result
 			.appendTo(resultsBlock)
-			.animate(
-				{
-					top: top
-				},
-				1000,
-				'easeOutBack'
-			);
+			.css({top: -1000})
+			.animate({top: 0}, i * 500, 'easeOutBack');
 
 		if (i < (results.length - 1)) {
 			results[i].result.addClass('small');
 		}
-
-		top += results[i].result.outerHeight(true);
 	};
 }

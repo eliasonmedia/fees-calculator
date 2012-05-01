@@ -4,7 +4,7 @@
 body {
 	position: relative;
 	background: #545a69 url(../images/bg.png) repeat 0 0;
-	padding: 20px 0 0;
+	padding: 20px 0 100px;
 }
 
 #social {
@@ -44,9 +44,17 @@ body {
 	padding: 20px 0 0;
 	text-align: center;
 
+	h2 {
+		text-align: center;
+		color: white;
+		#font > .sans-serif(normal, 40px, 50px);
+		text-shadow: 0 1px 2px black;
+		padding: 0 0 20px;
+	}
+
 	.result {
 		.clearfix;
-		position: absolute;
+		position: relative;
 		margin: 0 auto 20px;
 		width: 802px;
 		text-align: left;
@@ -58,7 +66,7 @@ body {
 			float: left;
 			width: 200px;
 			height: 150px;
-			#gradient > .vertical(#00A3E5, #0088E0);
+			#gradient > .vertical(#CCC, #9F9F9F);
 
 			border-top: 1px solid #9f9f9f;
 			border-left: 1px solid #9f9f9f;
@@ -258,7 +266,7 @@ body {
 		display: block;
 		padding: 17px 20px;
 		margin: 0 0 40px;
-		width: 380px;
+		width: 378px;
 
 		.border-radius(10px);
 		border: 1px solid #5a6c82;
@@ -276,11 +284,12 @@ body {
 	}
 
 	button {
+		position: relative;
 		cursor: pointer;
 		display: block;
-		padding: 15px 0;
+		padding: 15px 25px;
 		margin: 0 0 30px;
-		width: 410px;
+		width: 420px;
 		
 		color: #fff;
 		font-family: Helvetica;
@@ -288,11 +297,25 @@ body {
 		font-size: 24px;
 		text-shadow: 1px 1px 2px rgba(0, 0, 0, 1), -1px -1px 2px rgba(0, 0, 0, 1);
 		letter-spacing: 1px;
+		text-align: left;
 
 		.border-radius(10px);
 		border: 1px solid #071f48;
 		#gradient > .vertical(#5582a5, #044290);
 		box-shadow: rgba(0,0,0,0.53) 0 2px 4px, inset rgba(255,255,255,0.42) 0 1px 0;
+
+		.arrow {
+			display: inline-block;
+			position: absolute;
+			top: 50%;
+			right: 20px;
+			margin-top: -17px;
+			
+			width: 34px;
+			height: 34px;
+
+			background: url(../images/arrow.png) no-repeat 0 0;
+		}
 	}
 
 	p {
