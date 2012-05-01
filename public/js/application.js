@@ -31,6 +31,7 @@ $(function() {
 			}
 		});
 
+	// Button click event
 	btn.click(function() {
 		box
 			.attr('data-orig-top', box.css('top'))
