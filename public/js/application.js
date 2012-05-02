@@ -50,7 +50,7 @@ $(function() {
 
 		// Let's make this look somewhat cool
 		$('#results').html('<div class="loader">&nbsp;</div>');
-		setTimeout(calc, 1500);
+		setTimeout(function() {  calc(+($('#amount').val().replace('$', ''))) }, 1500);
 	});
 
 	$('#amount')
@@ -86,9 +86,13 @@ function compare_total(a, b) {
 	return 0;
 }
 
-var calc = function() {
-	var amount = +($('#amount').val().replace('$', '')),
-		results = [],
+var init = function() {
+
+}
+
+var calc = function(amount) {
+	// Start calculating...
+	var results = [],
 		resultsBlock = $('#results').empty(),
 		resultBlock = ' <div class="left">' +
 							'<a href="#" title="" class="name">' +
@@ -111,6 +115,9 @@ var calc = function() {
 								'<p>$<span></span></p>' +
 							'</div>' +
 						'</div>';
+
+	// Push to the history stack
+	window.history.pushState({}, "Compare Fees", "/#compare/" + amount);
 
 	resultsBlock.append("<h2>Here's how much you'd be paying these gateways per transaction:</h2>");
 
