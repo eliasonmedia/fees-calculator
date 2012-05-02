@@ -39,7 +39,7 @@ $(function() {
 	// Button click event
 	btn.click(function() {
 		var amount = parsePrice($('.amount:visible').val())
-			freq = +($('#freq').val());
+			freq = parsePrice($('#freq').val());
 
 		if(amount == 0) {
 			alert("Wait... That doesn't look right");
