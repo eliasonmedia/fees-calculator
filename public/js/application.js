@@ -58,6 +58,13 @@ $(function() {
 		.keydown(function(e) {
 			if(e.keyCode == 13) { btn.trigger('click'); }
 		});
+
+	// Was amount specifed in URL?
+	if(window.location.hash.indexOf('#compare') !== -1) {
+		var amount = +(window.location.hash.substr(9));
+		box.find('input').val(amount);
+		btn.trigger('click');
+	}
 });
 
 jQuery.fn.center = function () {
@@ -84,10 +91,6 @@ function compare_total(a, b) {
 		return -1;
 
 	return 0;
-}
-
-var init = function() {
-
 }
 
 var calc = function(amount) {
@@ -119,7 +122,7 @@ var calc = function(amount) {
 	// Push to the history stack
 	window.history.pushState({}, "Compare Fees", "/#compare/" + amount);
 
-	resultsBlock.append("<h2>Here's how much you'd be paying these gateways per transaction:</h2>");
+	resultsBlock.append("<h2>How much you pay per transaction:</h2>");
 
 	// Define gateway prices
 	var costs = [
