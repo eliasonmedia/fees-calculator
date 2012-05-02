@@ -38,6 +38,14 @@ $(function() {
 
 	// Button click event
 	btn.click(function() {
+		var amount = parsePrice($('.amount:visible').val())
+			freq = +($('#freq').val());
+
+		if(amount == 0) {
+			alert("Wait... That doesn't look right");
+			return;
+		}
+
 		box
 			.attr('data-orig-top', box.css('top'))
 			.attr('data-hide-top', $(window).height() - 80);
@@ -56,9 +64,6 @@ $(function() {
 		// Let's make this look somewhat cool
 		$('#results').html('<div class="loader">&nbsp;</div>');
 		setTimeout(function() {
-			var amount = parsePrice($('.amount:visible').val())
-				freq = +($('#freq').val());
-
 			calc(amount, freq);
 		}, 1500);
 	});
