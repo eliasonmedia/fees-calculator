@@ -12,8 +12,27 @@
 
 			<h3>Use this tool to compare different payment gateway fees, and find the one that would be the lowest for your needs.</h3>
 
-			<label for="amount">What is your Total Transaction Amount?</label>
-			<input type="text" id="amount" placeholder="$10.00" />
+			<label>What type of transcation is this?</label>
+            <div class="toggle_button_wrapper">
+
+                <div class="toggle_button">
+                	<input id="trans-type" type="hidden" value="single">
+                    <a href="javascript:void(0);" val="single" class="side_one pressed"><span>Single Transaction</span></a>
+                    <a href="javascript:void(0);" val="annual" class="side_two"><span>Annual Sales</span></a>
+                </div>
+            </div>
+
+            <div id="single">
+				<label for="amount">What is your Total Transaction Amount?</label>
+				<input type="text" class="amount" placeholder="$10.00" />
+            </div>
+            <div id="annual">
+				<label for="amount">What is your Average Transaction Amount?</label>
+				<input type="text" class="amount" placeholder="$10.00" />
+
+				<label for="freq">How many of these per year?</label>
+				<input type="text" id="freq" placeholder="500" />
+            </div>
 
 			<button type="button" id="calc-btn">Help Me Save!<span class="arrow"></span></button>
 
