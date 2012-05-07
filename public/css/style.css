@@ -726,11 +726,11 @@ body {
 }
 #results.annual .result .total,
 #results.annual .result .total p {
-  width: 235px;
+  width: 235px !important;
 }
 #results.annual .result .total .bottom,
 #results.annual .result .total p .bottom {
-  width: 235px;
+  width: 235px !important;
 }
 #results.annual .result.small {
   width: 870px;
