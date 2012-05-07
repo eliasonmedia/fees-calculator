@@ -91,8 +91,13 @@ $(function() {
 	}
 
 	// About Page Link
-	$('#about-link, #calculator-link').click(function() {
-		$("#fee-box .page").toggle();
+	$('#about-link').click(function() {
+		$("#about").show();
+		$("#calculator").hide();
+	});
+	$('#calculator-link').click(function() {
+		$("#about").hide();
+		$("#calculator").show();
 	});
 });
 
