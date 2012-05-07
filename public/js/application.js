@@ -214,7 +214,12 @@ var calc = function(amount, freq) {
 		clicky.log(url, 'Calculate');
 	}
 
-	resultsBlock.append("<h2>How much you pay per transaction:</h2>");
+	if(type == 'annual') {
+		resultsBlock.append("<h2>How much you pay annually:</h2>");
+	} else {
+		resultsBlock.append("<h2>How much you pay per transaction:</h2>");
+	}
+	
 
 	// Define gateway prices
 	var costs = [
