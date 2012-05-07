@@ -219,6 +219,9 @@ var calc = function(amount, freq) {
 		clicky.log(url, 'Calculate');
 	}
 
+	// Change the social links
+	// 
+
 	if(type == 'annual') {
 		resultsBlock.append("<h2>How much you pay annually:</h2>");
 	} else {
