@@ -4,44 +4,59 @@
 	<title>Payment Gateway Fee Calculator</title>
 
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+	<meta property="og:title" content="Fee Calculator" />
+	<meta property="og:description" content="Payment fees seem confusing but they really aren't. See how the fees compare." />
 </head>
 <body>
 	<div class="container">
 		<div class="box" id="fee-box">
-			<h1>Fee Calculator</h1>
+			<div id="calculator" class="page">
+				<h1>Fee Calculator</h1>
 
-			<h3>Use this tool to compare different payment gateway fees, and find the one that would be the lowest for your needs.</h3>
+				<h3>Use this tool to compare different payment gateway fees, and find the one that would be the lowest for your needs.</h3>
 
-			<label>What type of transcation is this?</label>
-            <div class="toggle_button_wrapper">
+				<label>What type of transcation is this?</label>
+	            <div class="toggle_button_wrapper">
+	                <div class="toggle_button">
+	                	<input id="trans-type" type="hidden" value="single">
+	                    <a href="javascript:void(0);" val="single" class="side_one pressed"><span>Single Transaction</span></a>
+	                    <a href="javascript:void(0);" val="annual" class="side_two"><span>Annual Sales</span></a>
+	                </div>
+	            </div>
 
-                <div class="toggle_button">
-                	<input id="trans-type" type="hidden" value="single">
-                    <a href="javascript:void(0);" val="single" class="side_one pressed"><span>Single Transaction</span></a>
-                    <a href="javascript:void(0);" val="annual" class="side_two"><span>Annual Sales</span></a>
-                </div>
-            </div>
+	            <div id="single">
+					<label for="amount">What is your Total Transaction Amount?</label>
+					<input type="text" class="amount" placeholder="$10.00" />
+	            </div>
+	            <div id="annual">
+					<label for="amount">What is your Average Transaction Amount?</label>
+					<input type="text" class="amount" placeholder="$10.00" />
 
-            <div id="single">
-				<label for="amount">What is your Total Transaction Amount?</label>
-				<input type="text" class="amount" placeholder="$10.00" />
-            </div>
-            <div id="annual">
-				<label for="amount">What is your Average Transaction Amount?</label>
-				<input type="text" class="amount" placeholder="$10.00" />
+					<label for="freq">How many of these per year?</label>
+					<input type="text" id="freq" placeholder="500" />
+	            </div>
 
-				<label for="freq">How many of these per year?</label>
-				<input type="text" id="freq" placeholder="500" />
-            </div>
+				<button type="button" id="calc-btn">Help Me Save!<span class="arrow"></span></button>
 
-			<button type="button" id="calc-btn">Help Me Save!<span class="arrow"></span></button>
+				<p>See our <a href="javascript:void(0);" id="calculator-link">About Page</a> | &copy; <a href="http://twitter.com/BaconSeason" target="_blank">@BaconSeason</a> 2012</p>
+			</div>
+			<div id="about" class="page">
+				<h1>FeeCalc :: About</h1>
 
-			<p>See our <a href="terms.html">Terms &amp; Conditions</a> | <a href="http://dev.dwolla.com/calc" target="_blank">About</a> | <a href="http://dev.dwolla.com" target="_blank">Blog</a></p>
+				<h3>My name is <a href="http://twitter.com/BaconSeason">Michael</a>. Since I started working at <a href="http://www.dwolla.com">Dwolla</a> it became clear to me that payment fees are really confusing. I put this calculator together so people could easily understand how different payment system fees compare.</h3>
+
+				<h3>There are about 2000 different pricing models for different payment systems so the numbers could vary a little bit here or there so you shouldn't use this 100% accurate since you might qualify for some different pricing structure.</h3>
+
+				<h3>If you have any suggestions please reach out on <a href="http://twitter.com/BaconSeason">Twitter</a> - and I'll be happy to update this.</h3>
+
+				<p>Back to the <a href="javascript:void(0);" id="about-link">Calculator</a> | &copy; <a href="http://twitter.com/BaconSeason" target="_blank">@BaconSeason</a> 2012</p>
+			</div>
 		</div>
 
 		<div id="social">
           <a href="https://twitter.com/BaconSeason" class="twitter-follow-button" data-lang="en">@BaconSeason</a>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://feecalc.com">Tweet</a>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Payment fees seem confusing but they really aren't. See how the fees compare." data-lang="en" data-url="http://feecalc.com">Tweet</a>
           <a href="http://news.ycombinator.com/submit" class="hn-share-button" data-url="http://feecalc.com">Discuss on HN</a>
           <div class="fb-like" data-href="http://feecalc.com" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-colorscheme="dark"></div>
 		</div>
@@ -65,5 +80,19 @@
 	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=348633765180894";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+
+	<!-- Tracking JS -->
+	<script type="text/javascript">
+	var clicky_site_ids = clicky_site_ids || [];
+	clicky_site_ids.push(66580927);
+	(function() {
+	  var s = document.createElement('script');
+	  s.type = 'text/javascript';
+	  s.async = true;
+	  s.src = '//static.getclicky.com/js';
+	  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+	})();
+	</script>
+	<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66580927ns.gif" /></p></noscript>
 </body>
 </html>

@@ -7,6 +7,10 @@ body {
 	padding: 20px 0 100px;
 }
 
+#about {
+	display: none;
+}
+
 #social {
 	padding: 0 0 30px;
 	text-align: center;
@@ -132,7 +136,6 @@ body {
 					
 					span {
 						.ellipsis;
-						display: inline-block;
 						color: #222;
 					}
 				}
@@ -229,8 +232,18 @@ body {
 				}
 			}
 		}
+	}
 
-		&.annual {
+	&.annual {
+		width: 960px;
+
+		.result {
+			width: 960px;
+
+			.right {
+				width: 748px;
+			}
+
 			.freq, .times {
 				display: block;
 			}
@@ -238,28 +251,37 @@ body {
 				width: 35px;
 			}
 			.variable, .fixed, .freq {
-				width: 105px;
+				width: 135px;
 
 				p, .top, .bottom {
-					width: 105px;
+					width: 135px;
 				}
 			}
 			.total, .total p {
-				width: 165px;
+				width: 235px;
+				.bottom {
+					width: 235px;
+				}
 			}
 
 			&.small {
+				width: 870px;
+
+				.right {
+					width: 678px;
+				}
+
 				.variable, .fixed, .total, .freq { 
-					width: 95px;
+					width: 125px;
 
 					p, .top, .bottom {
-						width: 95px;
+						width: 125px;
 					}
 				}
-				.total {
-					width: 130px !important;
-					p {
-						width: 130px !important;
+				.total, .total p {
+					width: 210px !important;
+					.bottom {
+						width: 210px !important;
 					}
 				}
 				.plus, .eq, .times {
@@ -269,7 +291,6 @@ body {
 		}
 	}
 }
-
 
 .box {
 	z-index: 1000;

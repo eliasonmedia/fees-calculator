@@ -89,8 +89,17 @@ $(function() {
 
 		btn.trigger('click');
 	}
+
+	// About Page Link
+	$('#about-link, #calculator-link').click(function() {
+		$("#fee-box .page").toggle();
+	});
 });
 
+/**
+* Turns matched element(s) into a custom gender selection box
+* @returns {jQuery}
+*/
 jQuery.fn.center = function () {
 	this
 		.css({
@@ -102,19 +111,65 @@ jQuery.fn.center = function () {
 	return this;
 }
 
+/**
+* Turns matched element(s) into a custom gender selection box
+* @returns {jQuery}
+*/
+jQuery.fn.toggleButton = function(options) {
+	var opts = $.extend({
+		label: '.title',
+		callback: false
+	}, options);
+
+	return this.each(function() {
+		var el = $(this);
+		var input = el.find("input");
+
+		if (input.val()) {
+			el.find("a[val='" + input.val() + "']").addClass("pressed").siblings().removeClass("pressed");
+		} else {
+			input.val(el.find(".pressed").attr('val'));
+		}
+
+		el.find("a").click(function(e) {
+			e.preventDefault();
+			var obj = $(this);
+
+			obj
+				.addClass("pressed")
+				.siblings().removeClass("pressed")
+				.siblings("input").val(obj.attr('val'));
+				
+			if (obj.attr('callback'))
+				eval(obj.attr('callback'));
+
+			if (opts.callback)
+				opts.callback.call();
+		});
+		
+		el.siblings(opts.label).click(function() {
+			el.find("a:not(.pressed)").trigger("click");
+		});
+	});
+}
+
 Number.prototype.formatMoney = function(c, d, t){
 	var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
 
 	return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 };
 
-function compare_total(a, b) {
+var compare_total = function(a, b) {
 	if (a.total < b.total)
 		return 1;
 	if (a.total > b.total)
 		return -1;
 
 	return 0;
+}
+
+var parsePrice = function(str) {
+	return str.replace(/[^0-9\.]+/g, '');
 }
 
 var calc = function(amount, freq) {
@@ -146,6 +201,7 @@ var calc = function(amount, freq) {
 							'<div class="eq"><p>=</p></div>' +
 							'<div class="total">' +
 								'<p>$<span></span></p>' +
+								'<span class="bottom">Total Fee</span>' +
 							'</div>' +
 						'</div>';
 
@@ -197,14 +253,13 @@ var calc = function(amount, freq) {
 			});
 
 		// Calc costs
-		var variable = ((costs[i].variable / 100) * amount).formatMoney(2, '.', ','),
+		var variable = ((costs[i].variable / 100) * amount),
 			isFixedObject = (typeof costs[i].fixed == 'object'),
-			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed).formatMoney(2, '.', ',') : 0,
+			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed) : 0,
 			total = (+variable + +fixed);
 
 		if(type == 'annual') {
 			total = total * freq;
-			result.addClass('annual');
 		}
 
 		result
@@ -216,13 +271,13 @@ var calc = function(amount, freq) {
 				.text(costs[i].label)
 				.end()
 			.find('.variable .top')
-				.text(costs[i].variable + '% * ' + amount + ' =')
+				.text(costs[i].variable.formatMoney(2, '.', ',') + '% * ' + amount + ' =')
 				.end()
 			.find('.variable p span')
-				.text(variable)
+				.text(variable.formatMoney(2, '.', ','))
 				.end()
 			.find('.fixed p span')
-				.text(fixed)
+				.text(fixed.formatMoney(2, '.', ','))
 				.end()
 			.find('.freq p span')
 				.text(freq)
@@ -247,50 +302,8 @@ var calc = function(amount, freq) {
 			results[i].result.addClass('small');
 		}
 	};
-}
 
-/**
-* Turns matched element(s) into a custom gender selection box
-* @returns {jQuery}
-*/
-jQuery.fn.toggleButton = function(options) {
-	var opts = $.extend({
-		label: '.title',
-		callback: false
-	}, options);
-
-	return this.each(function() {
-		var el = $(this);
-		var input = el.find("input");
-
-		if (input.val()) {
-			el.find("a[val='" + input.val() + "']").addClass("pressed").siblings().removeClass("pressed");
-		} else {
-			input.val(el.find(".pressed").attr('val'));
-		}
-
-		el.find("a").click(function(e) {
-			e.preventDefault();
-			var obj = $(this);
-
-			obj
-				.addClass("pressed")
-				.siblings().removeClass("pressed")
-				.siblings("input").val(obj.attr('val'));
-				
-			if (obj.attr('callback'))
-				eval(obj.attr('callback'));
-
-			if (opts.callback)
-				opts.callback.call();
-		});
-		
-		el.siblings(opts.label).click(function() {
-			el.find("a:not(.pressed)").trigger("click");
-		});
-	});
-}
-
-var parsePrice = function(str) {
-	return str.replace(/\D\./g,'');
+	if(type == 'annual') {
+		resultsBlock.addClass('annual');
+	}
 }

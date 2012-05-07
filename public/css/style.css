@@ -367,6 +367,9 @@ body {
   background: #545a69 url(../images/bg.png) repeat 0 0;
   padding: 20px 0 100px;
 }
+#about {
+  display: none;
+}
 #social {
   padding: 0 0 30px;
   text-align: center;
@@ -545,7 +548,6 @@ body {
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   -moz-binding: url('assets/xml/ellipsis.xml#ellipsis');
-  display: inline-block;
   color: #222;
 }
 #results .result .right .variable.total p,
@@ -682,64 +684,85 @@ body {
   height: 120px;
   line-height: 120px;
 }
-#results .result.annual .freq,
-#results .result.annual .times {
+#results.annual {
+  width: 960px;
+}
+#results.annual .result {
+  width: 960px;
+}
+#results.annual .result .right {
+  width: 748px;
+}
+#results.annual .result .freq,
+#results.annual .result .times {
   display: block;
 }
-#results .result.annual .plus,
-#results .result.annual .eq,
-#results .result.annual .times {
+#results.annual .result .plus,
+#results.annual .result .eq,
+#results.annual .result .times {
   width: 35px;
 }
-#results .result.annual .variable,
-#results .result.annual .fixed,
-#results .result.annual .freq {
-  width: 105px;
+#results.annual .result .variable,
+#results.annual .result .fixed,
+#results.annual .result .freq {
+  width: 135px;
 }
-#results .result.annual .variable p,
-#results .result.annual .fixed p,
-#results .result.annual .freq p,
-#results .result.annual .variable .top,
-#results .result.annual .fixed .top,
-#results .result.annual .freq .top,
-#results .result.annual .variable .bottom,
-#results .result.annual .fixed .bottom,
-#results .result.annual .freq .bottom {
-  width: 105px;
+#results.annual .result .variable p,
+#results.annual .result .fixed p,
+#results.annual .result .freq p,
+#results.annual .result .variable .top,
+#results.annual .result .fixed .top,
+#results.annual .result .freq .top,
+#results.annual .result .variable .bottom,
+#results.annual .result .fixed .bottom,
+#results.annual .result .freq .bottom {
+  width: 135px;
 }
-#results .result.annual .total,
-#results .result.annual .total p {
-  width: 165px;
+#results.annual .result .total,
+#results.annual .result .total p {
+  width: 235px;
 }
-#results .result.annual.small .variable,
-#results .result.annual.small .fixed,
-#results .result.annual.small .total,
-#results .result.annual.small .freq {
-  width: 95px;
+#results.annual .result .total .bottom,
+#results.annual .result .total p .bottom {
+  width: 235px;
 }
-#results .result.annual.small .variable p,
-#results .result.annual.small .fixed p,
-#results .result.annual.small .total p,
-#results .result.annual.small .freq p,
-#results .result.annual.small .variable .top,
-#results .result.annual.small .fixed .top,
-#results .result.annual.small .total .top,
-#results .result.annual.small .freq .top,
-#results .result.annual.small .variable .bottom,
-#results .result.annual.small .fixed .bottom,
-#results .result.annual.small .total .bottom,
-#results .result.annual.small .freq .bottom {
-  width: 95px;
+#results.annual .result.small {
+  width: 870px;
 }
-#results .result.annual.small .total {
-  width: 130px !important;
+#results.annual .result.small .right {
+  width: 678px;
 }
-#results .result.annual.small .total p {
-  width: 130px !important;
+#results.annual .result.small .variable,
+#results.annual .result.small .fixed,
+#results.annual .result.small .total,
+#results.annual .result.small .freq {
+  width: 125px;
 }
-#results .result.annual.small .plus,
-#results .result.annual.small .eq,
-#results .result.annual.small .times {
+#results.annual .result.small .variable p,
+#results.annual .result.small .fixed p,
+#results.annual .result.small .total p,
+#results.annual .result.small .freq p,
+#results.annual .result.small .variable .top,
+#results.annual .result.small .fixed .top,
+#results.annual .result.small .total .top,
+#results.annual .result.small .freq .top,
+#results.annual .result.small .variable .bottom,
+#results.annual .result.small .fixed .bottom,
+#results.annual .result.small .total .bottom,
+#results.annual .result.small .freq .bottom {
+  width: 125px;
+}
+#results.annual .result.small .total,
+#results.annual .result.small .total p {
+  width: 210px !important;
+}
+#results.annual .result.small .total .bottom,
+#results.annual .result.small .total p .bottom {
+  width: 210px !important;
+}
+#results.annual .result.small .plus,
+#results.annual .result.small .eq,
+#results.annual .result.small .times {
   width: 30px;
 }
 .box {
