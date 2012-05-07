@@ -333,5 +333,7 @@ var calc = function(amount, freq) {
 
 	if(type == 'annual') {
 		resultsBlock.addClass('annual');
+	} else {
+		resultsBlock.removeClass('annual');
 	}
 }
