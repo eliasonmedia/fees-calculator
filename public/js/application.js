@@ -1,4 +1,41 @@
+// Define gateway prices
+var costs = [
+	{
+		name: 'paypal',
+		label: 'PayPal',
+		variable: 2.9,
+		fixed: 0.30,
+		url: 'http://www.paypal.com'
+	},
+	{
+		name: 'square',
+		label: 'Square',
+		variable: 2.75,
+		fixed: 0,
+		url: 'http://www.squareup.com'
+	},
+	{
+		name: 'avg',
+		label: 'Average Merchant',
+		variable: 3.4,
+		fixed: 0.30,
+		url: '#'
+	},
+	{
+		name: 'dwolla',
+		label: 'Dwolla',
+		url: 'http://www.dwolla.com',
+		variable: 0,
+		fixed: {
+			trigger: 10.01,
+			cost: 0.25,
+			maxAmount: 5000
+		}
+	}
+];
+
 $(function() {
+	// Cache common queries
 	var box = $('#fee-box'),
 		btn = $('#calc-btn');
 
@@ -63,18 +100,22 @@ $(function() {
 		// Let's make this look somewhat cool
 		$('#results').html('<div class="loader">&nbsp;</div>');
 		setTimeout(function() {
+			// Give this a "real" feeling of number crunching...
 			calc(amount, freq);
 		}, 1500);
 	});
 
+	// Bind the enter key to submit
 	$('input[type=text]')
 		.keydown(function(e) {
 			if(e.keyCode == 13) { btn.trigger('click'); }
 		});
+
+	// Focus the first visible amount input
 	$('.amount:visible')
 		.filter(':visible').focus();
 
-	// Was amount specifed in URL?
+	// Was amount specifed in URL? Auto-trigger a calculation
 	if(window.location.hash.indexOf('#compare') !== -1) {
 		var params = window.location.hash.split('/'),
 			type = params[1]
@@ -90,13 +131,10 @@ $(function() {
 	}
 
 	// About Page Link
-	$('#about-link').click(function() {
-		$("#about").show();
-		$("#calculator").hide();
-	});
-	$('#calculator-link').click(function() {
-		$("#about").hide();
-		$("#calculator").show();
+	$('#about-link, #calculator-link').click(function() {
+		$("#about")
+			.toggle()
+			.siblings().toggle();
 	});
 });
 
@@ -203,50 +241,8 @@ var calc = function(amount, freq) {
 		clicky.log(url, 'Calculate');
 	}
 
-	// Change the social links
-	//
-
-	if(type == 'annual') {
-		resultsBlock.append("<h2>How much you pay annually:</h2>");
-	} else {
-		resultsBlock.append("<h2>How much you pay per transaction:</h2>");
-	}
-
-	// Define gateway prices
-	var costs = [
-		{
-			name: 'paypal',
-			label: 'PayPal',
-			variable: 2.9,
-			fixed: 0.30,
-			url: 'http://www.paypal.com'
-		},
-		{
-			name: 'square',
-			label: 'Square',
-			variable: 2.75,
-			fixed: 0,
-			url: 'http://www.squareup.com'
-		},
-		{
-			name: 'avg',
-			label: 'Average Merchant',
-			variable: 3.4,
-			fixed: 0.30,
-			url: '#'
-		},
-		{
-			name: 'dwolla',
-			label: 'Dwolla',
-			url: 'http://www.dwolla.com',
-			variable: 0,
-			fixed: {
-				trigger: 10.01,
-				cost: 0.25,
-				maxAmount: 5000
-			}
-		}
-	];
+	// Insert page title
+	resultsBlock.append(type == 'annual' ? "<h2>How much you pay annually:</h2>" : "<h2>How much you pay per transaction:</h2>");
 
 	// Create elements for each payment gateway
 	for (var i = costs.length - 1; i >= 0; i--) {
@@ -314,9 +310,6 @@ var calc = function(amount, freq) {
 		}
 	};
 
-	if(type == 'annual') {
-		resultsBlock.addClass('annual');
-	} else {
-		resultsBlock.removeClass('annual');
-	}
+	// Style as annual average?
+	resultsBlock.toggleClass('annual', (type == 'annual'));
 }
