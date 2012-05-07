@@ -550,6 +550,12 @@ body {
   -moz-binding: url('assets/xml/ellipsis.xml#ellipsis');
   color: #222;
 }
+#results .result .right .variable.total,
+#results .result .right .fixed.total,
+#results .result .right .freq.total,
+#results .result .right .total.total {
+  width: 190px;
+}
 #results .result .right .variable.total p,
 #results .result .right .fixed.total p,
 #results .result .right .freq.total p,
