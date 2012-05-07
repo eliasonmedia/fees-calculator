@@ -246,7 +246,8 @@ var calc = function(amount, freq) {
 			variable: 0,
 			fixed: {
 				trigger: 10,
-				cost: 0.25
+				cost: 0.25,
+				maxAmount: 5000
 			}
 		}
 	];
@@ -261,9 +262,17 @@ var calc = function(amount, freq) {
 		// Calc costs
 		var variable = ((costs[i].variable / 100) * amount),
 			isFixedObject = (typeof costs[i].fixed == 'object'),
-			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed) : 0,
-			total = (+variable + +fixed);
+			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed) : 0;
 
+		// Compensate for Dwolla's max transaction amount
+		if (amount > costs[i].fixed.maxAmount) {
+			fixed *= Math.ceil(amount / costs[i].fixed.maxAmount);
+		}
+
+		// Calculate final total
+		var total = (+variable + +fixed);
+
+		// Compensate for annual recurring transactions
 		if(type == 'annual') {
 			total = total * freq;
 		}
