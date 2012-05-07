@@ -362,10 +362,17 @@ nav,
 section {
   display: block;
 }
+html {
+  background: #545a69 url(../images/bg.png) repeat 0 0;
+  height: 100%;
+  width: 100%;
+}
 body {
   position: relative;
-  background: #545a69 url(../images/bg.png) repeat 0 0;
+  background: url(../images/light.png) no-repeat 50% 0;
   padding: 20px 0 100px;
+  height: 100%;
+  width: 100%;
 }
 #about {
   display: none;
