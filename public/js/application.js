@@ -8,7 +8,6 @@ $(function() {
 	}});
 
 	box
-		.center()
 		.fadeIn(1000)
 		.hover(
 			function() {
@@ -28,7 +27,7 @@ $(function() {
 
 				box.animate(
 					{
-						top: box.attr('data-orig-top')
+						top: 60
 					},
 					700,
 					'easeInBack'
@@ -47,8 +46,8 @@ $(function() {
 		}
 
 		box
-			.attr('data-orig-top', box.css('top'))
-			.attr('data-hide-top', $(window).height() - 80);
+			.attr('data-hide-top', $(window).height() - 80)
+			.css('position', 'fixed');
 
 		box.animate(
 			{
@@ -100,21 +99,6 @@ $(function() {
 		$("#calculator").show();
 	});
 });
-
-/**
-* Turns matched element(s) into a custom gender selection box
-* @returns {jQuery}
-*/
-jQuery.fn.center = function () {
-	this
-		.css({
-			'position': 'fixed',
-			'top': (($(window).height() - this.outerHeight()) / 2) + $(window).scrollTop() + "px",
-			'left': (($(window).width() - this.outerWidth()) / 2) + $(window).scrollLeft() + "px"
-		});
-
-	return this;
-}
 
 /**
 * Turns matched element(s) into a custom gender selection box
