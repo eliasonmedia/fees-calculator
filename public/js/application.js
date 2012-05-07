@@ -206,7 +206,13 @@ var calc = function(amount, freq) {
 						'</div>';
 
 	// Push to the history stack
-	window.history.pushState({}, "Compare Fees", "/#compare/" + type + '/' + amount + '/' + freq);
+	var url = "/#compare/" + type + '/' + amount + '/' + freq;
+	window.history.pushState({}, "Compare Fees", url);
+
+	// Track this
+	if(clicky) {
+		clicky.log(url, 'Calculate');
+	}
 
 	resultsBlock.append("<h2>How much you pay per transaction:</h2>");
 
