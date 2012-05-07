@@ -204,14 +204,13 @@ var calc = function(amount, freq) {
 	}
 
 	// Change the social links
-	// 
+	//
 
 	if(type == 'annual') {
 		resultsBlock.append("<h2>How much you pay annually:</h2>");
 	} else {
 		resultsBlock.append("<h2>How much you pay per transaction:</h2>");
 	}
-	
 
 	// Define gateway prices
 	var costs = [
@@ -242,7 +241,7 @@ var calc = function(amount, freq) {
 			url: 'http://www.dwolla.com',
 			variable: 0,
 			fixed: {
-				trigger: 10,
+				trigger: 10.01,
 				cost: 0.25,
 				maxAmount: 5000
 			}
