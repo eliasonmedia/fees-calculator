@@ -1,36 +1,61 @@
 // Define gateway prices
 var costs = [
 	{
-		name: 'paypal',
-		label: 'PayPal',
-		variable: 2.9,
+		name: 'etsy_pp',
+		label: 'Etsy (PayPal)',
+		variable: 6.4,
+		fixed: 0.50,
+		url: 'http://www.etsy.com'
+	},
+	{
+		name: 'etsy_direct',
+		label: 'Etsy (Direct Checkout)',
+		variable: 6.5,
+		fixed: 0.45,
+		url: 'http://www.etsy.com'
+	},
+	{
+		name: 'gs_pp',
+		label: 'Goodsmiths (PayPal)',
+		variable: 5.4,
 		fixed: 0.30,
-		url: 'http://www.paypal.com'
+		url: 'https://www.goodsmiths.com/splash'
 	},
 	{
-		name: 'square',
-		label: 'Square',
-		variable: 2.75,
-		fixed: 0,
-		url: 'http://www.squareup.com'
-	},
-	{
-		name: 'avg',
-		label: 'Average Merchant',
-		variable: 3.4,
+		name: 'gs12_pp',
+		label: 'Goodsmiths Early Adopters (PayPal)',
+		variable: 4.9,
 		fixed: 0.30,
-		url: '#'
+		url: 'https://www.goodsmiths.com/splash'
 	},
 	{
-		name: 'dwolla',
-		label: 'Dwolla',
-		url: 'http://www.dwolla.com',
-		variable: 0,
+		name: 'gs12_dwolla',
+		label: 'Goodsmiths Early Adopters (Dwolla)',
+		variable: 2.0,
+		url: 'https://www.goodsmiths.com/splash',
+		fixed: {
+			trigger: 10.01,
+			cost: 0.25,
+			maxAmount: 5000
+		}	
+	},
+	{
+		name: 'gs_dwolla',
+		label: 'Goodsmiths (Dwolla)',
+		url: 'http://www.goodsmiths.com',
+		variable: 2.5,
 		fixed: {
 			trigger: 10.01,
 			cost: 0.25,
 			maxAmount: 5000
 		}
+	}
+	{
+		name: 'bon_all',
+		label: 'Bonanza (All Methods)',
+		url: 'http://www.bonanza.com',
+		variable: 6.4,
+		fixed: 0.30
 	}
 ];
 
@@ -213,7 +238,7 @@ var calc = function(amount, freq) {
 							'<div class="variable">' +
 								'<span class="top"></span>' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Var Rate</span>' +
+								'<span class="bottom">Variable Rate</span>' +
 							'</div>' +
 							'<div class="plus"><p>+</p></div>' +
 							'<div class="fixed">' +
