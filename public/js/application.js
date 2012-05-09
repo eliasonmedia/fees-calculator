@@ -49,7 +49,7 @@ var costs = [
 			cost: 0.25,
 			maxAmount: 5000
 		}
-	}
+	},
 	{
 		name: 'bon_all',
 		label: 'Bonanza (All Methods)',
