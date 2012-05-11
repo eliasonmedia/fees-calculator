@@ -17,33 +17,15 @@ var costs = [
 	{
 		name: 'gs_pp',
 		label: 'Goodsmiths (PayPal)',
-		variable: 5.4,
-		fixed: 0.30,
-		url: 'https://www.goodsmiths.com/splash'
-	},
-	{
-		name: 'gs12_pp',
-		label: 'Goodsmiths Early Adopters (PayPal)',
 		variable: 4.9,
 		fixed: 0.30,
 		url: 'https://www.goodsmiths.com/splash'
 	},
 	{
-		name: 'gs12_dwolla',
-		label: 'Goodsmiths Early Adopters (Dwolla)',
-		variable: 2.0,
-		url: 'https://www.goodsmiths.com/splash',
-		fixed: {
-			trigger: 10.01,
-			cost: 0.25,
-			maxAmount: 5000
-		}	
-	},
-	{
 		name: 'gs_dwolla',
 		label: 'Goodsmiths (Dwolla)',
 		url: 'http://www.goodsmiths.com',
-		variable: 2.5,
+		variable: 2.0,
 		fixed: {
 			trigger: 10.01,
 			cost: 0.25,
