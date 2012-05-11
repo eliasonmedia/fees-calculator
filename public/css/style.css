@@ -1,8 +1,8 @@
 /*
   Bootstrap v1.1
-  Variables and mixins to bootstrap any new web development project.
+  merchants and mixins to bootstrap any new web development project.
 */
-/* Variables
+/* merchants
 -------------------------------------------------- */
 /* Mixins
 -------------------------------------------------- */
@@ -515,8 +515,8 @@ body {
   -moz-border-radius: 0 10px 10px 0;
   border-radius: 0 10px 10px 0;
 }
-#results .result .right .variable,
-#results .result .right .fixed,
+#results .result .right .merchant,
+#results .result .right .gateway,
 #results .result .right .freq,
 #results .result .right .total {
   white-space: nowrap;
@@ -528,8 +528,8 @@ body {
   float: left;
   width: 150px;
 }
-#results .result .right .variable p,
-#results .result .right .fixed p,
+#results .result .right .merchant p,
+#results .result .right .gateway p,
 #results .result .right .freq p,
 #results .result .right .total p {
   white-space: nowrap;
@@ -545,8 +545,8 @@ body {
   line-height: 150px;
   color: #c9c9c9;
 }
-#results .result .right .variable p span,
-#results .result .right .fixed p span,
+#results .result .right .merchant p span,
+#results .result .right .gateway p span,
 #results .result .right .freq p span,
 #results .result .right .total p span {
   white-space: nowrap;
@@ -556,31 +556,31 @@ body {
   -moz-binding: url('assets/xml/ellipsis.xml#ellipsis');
   color: #222;
 }
-#results .result .right .variable.total,
-#results .result .right .fixed.total,
+#results .result .right .merchant.total,
+#results .result .right .gateway.total,
 #results .result .right .freq.total,
 #results .result .right .total.total {
   width: 190px;
 }
-#results .result .right .variable.total p,
-#results .result .right .fixed.total p,
+#results .result .right .merchant.total p,
+#results .result .right .gateway.total p,
 #results .result .right .freq.total p,
 #results .result .right .total.total p {
   font-size: 45px;
 }
-#results .result .right .variable.total p span,
-#results .result .right .fixed.total p span,
+#results .result .right .merchant.total p span,
+#results .result .right .gateway.total p span,
 #results .result .right .freq.total p span,
 #results .result .right .total.total p span {
   padding-left: 2px;
   font-weight: bold;
 }
-#results .result .right .variable .top,
-#results .result .right .fixed .top,
+#results .result .right .merchant .top,
+#results .result .right .gateway .top,
 #results .result .right .freq .top,
 #results .result .right .total .top,
-#results .result .right .variable .bottom,
-#results .result .right .fixed .bottom,
+#results .result .right .merchant .bottom,
+#results .result .right .gateway .bottom,
 #results .result .right .freq .bottom,
 #results .result .right .total .bottom {
   display: block;
@@ -595,14 +595,14 @@ body {
   text-transform: uppercase;
   text-align: center;
 }
-#results .result .right .variable .top,
-#results .result .right .fixed .top,
+#results .result .right .merchant .top,
+#results .result .right .gateway .top,
 #results .result .right .freq .top,
 #results .result .right .total .top {
   top: 10px;
 }
-#results .result .right .variable .bottom,
-#results .result .right .fixed .bottom,
+#results .result .right .merchant .bottom,
+#results .result .right .gateway .bottom,
 #results .result .right .freq .bottom,
 #results .result .right .total .bottom {
   top: 120px;
@@ -649,38 +649,38 @@ body {
   height: 120px;
   padding-left: 10px;
 }
-#results .result.small .right .variable,
-#results .result.small .right .fixed,
+#results .result.small .right .merchant,
+#results .result.small .right .gateway,
 #results .result.small .right .total,
 #results .result.small .right .freq {
   width: 120px;
 }
-#results .result.small .right .variable p,
-#results .result.small .right .fixed p,
+#results .result.small .right .merchant p,
+#results .result.small .right .gateway p,
 #results .result.small .right .total p,
 #results .result.small .right .freq p {
   height: 120px;
   line-height: 120px;
   font-size: 24px;
 }
-#results .result.small .right .variable .top,
-#results .result.small .right .fixed .top,
+#results .result.small .right .merchant .top,
+#results .result.small .right .gateway .top,
 #results .result.small .right .total .top,
 #results .result.small .right .freq .top,
-#results .result.small .right .variable .bottom,
-#results .result.small .right .fixed .bottom,
+#results .result.small .right .merchant .bottom,
+#results .result.small .right .gateway .bottom,
 #results .result.small .right .total .bottom,
 #results .result.small .right .freq .bottom {
   width: 120px;
 }
-#results .result.small .right .variable .bottom,
-#results .result.small .right .fixed .bottom,
+#results .result.small .right .merchant .bottom,
+#results .result.small .right .gateway .bottom,
 #results .result.small .right .total .bottom,
 #results .result.small .right .freq .bottom {
   top: 97px;
 }
-#results .result.small .right .variable.total,
-#results .result.small .right .fixed.total,
+#results .result.small .right .merchant.total,
+#results .result.small .right .gateway.total,
 #results .result.small .right .total.total,
 #results .result.small .right .freq.total {
   width: 160px;
@@ -714,19 +714,19 @@ body {
 #results.annual .result .times {
   width: 35px;
 }
-#results.annual .result .variable,
-#results.annual .result .fixed,
+#results.annual .result .merchant,
+#results.annual .result .gateway,
 #results.annual .result .freq {
   width: 135px;
 }
-#results.annual .result .variable p,
-#results.annual .result .fixed p,
+#results.annual .result .merchant p,
+#results.annual .result .gateway p,
 #results.annual .result .freq p,
-#results.annual .result .variable .top,
-#results.annual .result .fixed .top,
+#results.annual .result .merchant .top,
+#results.annual .result .gateway .top,
 #results.annual .result .freq .top,
-#results.annual .result .variable .bottom,
-#results.annual .result .fixed .bottom,
+#results.annual .result .merchant .bottom,
+#results.annual .result .gateway .bottom,
 #results.annual .result .freq .bottom {
   width: 135px;
 }
@@ -744,22 +744,22 @@ body {
 #results.annual .result.small .right {
   width: 678px;
 }
-#results.annual .result.small .variable,
-#results.annual .result.small .fixed,
+#results.annual .result.small .merchant,
+#results.annual .result.small .gateway,
 #results.annual .result.small .total,
 #results.annual .result.small .freq {
   width: 125px;
 }
-#results.annual .result.small .variable p,
-#results.annual .result.small .fixed p,
+#results.annual .result.small .merchant p,
+#results.annual .result.small .gateway p,
 #results.annual .result.small .total p,
 #results.annual .result.small .freq p,
-#results.annual .result.small .variable .top,
-#results.annual .result.small .fixed .top,
+#results.annual .result.small .merchant .top,
+#results.annual .result.small .gateway .top,
 #results.annual .result.small .total .top,
 #results.annual .result.small .freq .top,
-#results.annual .result.small .variable .bottom,
-#results.annual .result.small .fixed .bottom,
+#results.annual .result.small .merchant .bottom,
+#results.annual .result.small .gateway .bottom,
 #results.annual .result.small .total .bottom,
 #results.annual .result.small .freq .bottom {
   width: 125px;
