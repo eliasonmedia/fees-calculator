@@ -11,7 +11,7 @@ var costs = [
 		url: 'http://www.etsy.com'
 	},
 	{
-		name: 'etsy_direct',
+		name: 'etsy_dc',
 		label: 'Etsy (Direct Checkout)',
 		merchvar: 6.5,
 		merchfixed: 0.20,
