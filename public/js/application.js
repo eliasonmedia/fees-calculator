@@ -31,7 +31,7 @@ var costs = [
 		url: 'https://www.goodsmiths.com/splash'
 	},
 	{
-		name: 'gs_dwolla',
+		name: 'gs_dw',
 		label: 'Goodsmiths (Dwolla)',
 		url: 'http://www.goodsmiths.com',
 		merchvar: 2.0,
