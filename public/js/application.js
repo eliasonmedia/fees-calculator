@@ -3,42 +3,30 @@ var costs = [
 	{
 		name: 'etsy_pp',
 		label: 'Etsy (PayPal)',
-		merchvar: 3.5,
-		merchfixed: 0.20,
-		gatevar: 2.9,
-		gatefixed: 0.30,
-		subfee: 0.0,
+		variable: 6.4,
+		fixed: 0.50,
 		url: 'http://www.etsy.com'
 	},
 	{
 		name: 'etsy_dc',
 		label: 'Etsy (Direct Checkout)',
-		merchvar: 6.5,
-		merchfixed: 0.20,
-		gatevar: 3.0,
-		gatefixed: 0.25,
-		subfee: 0.0,
+		variable: 6.5,
+		fixed: 0.45,
 		url: 'http://www.etsy.com'
 	},
 	{
 		name: 'gs_pp',
 		label: 'Goodsmiths (PayPal)',
-		merchvar: 2.0,
-		merchfixed: 0.0,
-		gatevar: 2.9,
-		gatefixed: 0.30,
-		subfee: 0.0,
+		variable: 4.9,
+		fixed: 0.30,
 		url: 'https://www.goodsmiths.com/splash'
 	},
 	{
 		name: 'gs_dw',
 		label: 'Goodsmiths (Dwolla)',
 		url: 'http://www.goodsmiths.com',
-		merchvar: 2.0,
-		merchfixed: 0.0,
-		gatevar: 0.0,
-		subfee: 0.0,
-		gatefixed: {
+		variable: 2.0,
+		fixed: {
 			trigger: 10.01,
 			cost: 0.25,
 			maxAmount: 5000
@@ -47,22 +35,9 @@ var costs = [
 	{
 		name: 'bon_all',
 		label: 'Bonanza (All Methods)',
-		merchvar: 3.5,
-		fixed: 0.0,
-		gatevar: 2.9,
-		gatefixed: 0.30,
-		subfee: 0.0,
-		url: 'http://www.bonanza.com'
-	},
-	{
-		name: 'af_all',
-		label: 'ArtFire (All Methods)',
-		merchvar: 0.0,
-		fixed: 0.0,
-		gatevar: 2.9,
-		gatefixed: 0.30,
-		subfee: 155.40,
-		url: 'http://www.artfire.com'
+		url: 'http://www.bonanza.com',
+		variable: 6.4,
+		fixed: 0.30
 	}
 ];
 
@@ -242,20 +217,20 @@ var calc = function(amount, freq) {
 							'</a>' +
 						'</div>' +
 						'<div class="right">' +
-							'<div class="merchant">' +
+							'<div class="variable">' +
 								'<span class="top"></span>' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Merchant Fee</span>' +
+								'<span class="bottom">Variable Rate</span>' +
 							'</div>' +
 							'<div class="plus"><p>+</p></div>' +
-							'<div class="gateway">' +
+							'<div class="fixed">' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Gateway Fee</span>' +
+								'<span class="bottom">Fixed Rate</span>' +
 							'</div>' +
 							'<div class="times"><p>&times;</p></div>' +
 							'<div class="freq">' +
 								'<p><span></span></p>' +
-								'<span class="bottom">Quantity</span>' +
+								'<span class="bottom">Frequency</span>' +
 							'</div>' +
 							'<div class="eq"><p>=</p></div>' +
 							'<div class="total">' +
@@ -268,6 +243,11 @@ var calc = function(amount, freq) {
 	var url = "/#compare/" + type + '/' + amount + '/' + freq;
 	window.history.pushState({}, "Compare Fees", url);
 
+	// Track this
+	if(clicky) {
+		clicky.log(url, 'Calculate');
+	}
+
 	// Insert page title
 	resultsBlock.append(type == 'annual' ? "<h2>How much you pay annually:</h2>" : "<h2>How much you pay per transaction:</h2>");
 
@@ -278,34 +258,22 @@ var calc = function(amount, freq) {
 				'html': resultBlock
 			});
 
-		// Calc merchant costs
-		var merchvar = ((costs[i].merchvar / 100) * amount),
-			isFixedObject = (typeof costs[i].merchfixed == 'object'),
-			merchfixed = ((isFixedObject && (amount >= costs[i].merchfixed.trigger)) || typeof costs[i].merchfixed == 'number') ? (isFixedObject ? costs[i].merchfixed.cost : costs[i].merchfixed) : 0;
-
-		// Calc gateway costs
-		var gatevar = ((costs[i].gatevar / 100) * amount),
-			isFixedObject = (typeof costs[i].gatefixed == 'object'),
-			gatefixed = ((isFixedObject && (amount >= costs[i].gatefixed.trigger)) || typeof costs[i].gatefixed == 'number') ? (isFixedObject ? costs[i].gatefixed.cost : costs[i].gatefixed) : 0;
-
+		// Calc costs
+		var variable = ((costs[i].variable / 100) * amount),
+			isFixedObject = (typeof costs[i].fixed == 'object'),
+			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed) : 0;
 
 		// Compensate for Dwolla's max transaction amount
-		if (amount > costs[i].gatefixed.maxAmount) {
-			fixed *= Math.ceil(amount / costs[i].gatefixed.maxAmount);
+		if (amount > costs[i].fixed.maxAmount) {
+			fixed *= Math.ceil(amount / costs[i].fixed.maxAmount);
 		}
 
-		// Calculate merchant subtotal
-		var merchant = (+merchvar + +merchfixed)
-
-		// Calculate gateway subtotal
-		var gateway = (+gatevar + +gatefixed)
-
 		// Calculate final total
-		var total = (+merchant + +gateway);
+		var total = (+variable + +fixed);
 
 		// Compensate for annual recurring transactions
 		if(type == 'annual') {
-			total = total * freq + subfee;
+			total = total * freq;
 		}
 
 		result
@@ -316,17 +284,14 @@ var calc = function(amount, freq) {
 			.find('.name h3')
 				.text(costs[i].label)
 				.end()
-			.find('.merchant .top')
-				.text(costs[i].merchvar.formatMoney(2, '.', ',') + '% + ' + costs[i].gatefixed.formatMoney(2, '.', ',') + ' for ' + amount + ' items =')
+			.find('.variable .top')
+				.text(costs[i].variable.formatMoney(2, '.', ',') + '% * ' + amount + ' =')
 				.end()
-			.find('.gateway .top')
-				.text(costs[i].merchvar.formatMoney(2, '.', ',') + '% + ' + costs[i].gatefixed.formatMoney(2, '.', ',') + ' for ' + amount + ' items =')
+			.find('.variable p span')
+				.text(variable.formatMoney(2, '.', ','))
 				.end()
-			.find('.merchant p span')
-				.text(merchant.formatMoney(2, '.', ','))
-				.end()
-			.find('.gateway p span')
-				.text(gateway.formatMoney(2, '.', ','))
+			.find('.fixed p span')
+				.text(fixed.formatMoney(2, '.', ','))
 				.end()
 			.find('.freq p span')
 				.text(freq)
