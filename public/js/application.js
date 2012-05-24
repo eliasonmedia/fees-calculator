@@ -5,6 +5,10 @@ var costs = [
 		label: '',
 		variable: 6.4,
 		fixed: 0.50,
+		mvar: 3.5,
+		mfixed: 0.40,
+		gvar: 2.9,
+		gfixed: 0.30,
 		url: 'http://www.etsy.com'
 	},
 	{
@@ -12,6 +16,10 @@ var costs = [
 		label: '',
 		variable: 6.5,
 		fixed: 0.45,
+		mvar: 3.5,
+		mfixed: 0.40,
+		gvar: 3.0,
+		gfixed: 0.25,
 		url: 'http://www.etsy.com'
 	},
 	{
@@ -19,6 +27,10 @@ var costs = [
 		label: '',
 		variable: 4.9,
 		fixed: 0.30,
+		mvar: 2.0,
+		mfixed: 0.0,
+		gvar: 2.9,
+		gfixed: 0.30,
 		url: 'http://goodsmiths.com'
 	},
 	{
@@ -30,6 +42,14 @@ var costs = [
 			trigger: 10.01,
 			cost: 0.25,
 			maxAmount: 5000
+		},
+		mvar: 2.0,
+		mfixed: 0.0,
+		gvar: 0.0,
+		gfixed: {
+			trigger: 10.01,
+			cost: 0.25,
+			maxAmount: 5000
 		}
 	},
 	{
@@ -37,7 +57,11 @@ var costs = [
 		label: '',
 		url: 'http://bonanza.com',
 		variable: 6.4,
-		fixed: 0.30
+		fixed: 0.30,
+		mvar: 3.5,
+		mfixed: 0.0,
+		gvar: 2.9,
+		gfixed: 0.30
 	}
 ];
 
@@ -228,12 +252,12 @@ var calc = function(amount, freq) {
 							'<div class="variable">' +
 								'<span class="top"></span>' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Var Rate</span>' +
+								'<span class="bottom">Variable</span>' +
 							'</div>' +
 							'<div class="plus"><p>+</p></div>' +
 							'<div class="fixed">' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Fixed Rate</span>' +
+								'<span class="bottom">Fixed</span>' +
 							'</div>' +
 							'<div class="times"><p>&times;</p></div>' +
 							'<div class="freq">' +
@@ -243,7 +267,7 @@ var calc = function(amount, freq) {
 							'<div class="eq"><p>=</p></div>' +
 							'<div class="total">' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Total Fee</span>' +
+								'<span class="bottom">Total Fees</span>' +
 							'</div>' +
 						'</div>';
 

@@ -505,19 +505,19 @@ body {
   background: url(../images/braintree.png) no-repeat 50% 25px;
 }
 #results .result.etsypp .name {
-  background: url(../images/etsy_pp.png) no-repeat 50% 15px;
+  background: url(../images/etsy_pp.png) no-repeat 50% 18px;
 }
 #results .result.etsydc .name {
-  background: url(../images/etsy_dc.png) no-repeat 50% 15px;
+  background: url(../images/etsy_dc.png) no-repeat 50% 18px;
 }
 #results .result.gspp .name {
-  background: url(../images/gs_pp.png) no-repeat 50% 15px;
+  background: url(../images/gs_pp.png) no-repeat 50% 18px;
 }
 #results .result.gsdw .name {
-  background: url(../images/gs_dw.png) no-repeat 50% 15px;
+  background: url(../images/gs_dw.png) no-repeat 50% 18px;
 }
 #results .result.bonall .name {
-  background: url(../images/bonanza_all.png) no-repeat 50% 15px;
+  background: url(../images/bonanza_all.png) no-repeat 50% 18px;
 }
 
 #results .result .right {
@@ -557,7 +557,7 @@ body {
   height: 150px;
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: normal;
   line-height: 150px;
   color: #c9c9c9;
@@ -595,7 +595,19 @@ body {
 #results .result .right .variable .top,
 #results .result .right .fixed .top,
 #results .result .right .freq .top,
-#results .result .right .total .top,
+#results .result .right .total .top {
+  display: block;
+  width: 150px;
+  height: 20px;
+  position: absolute;
+  color: #999;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
 #results .result .right .variable .bottom,
 #results .result .right .fixed .bottom,
 #results .result .right .freq .bottom,
@@ -678,7 +690,7 @@ body {
 #results .result.small .right .freq p {
   height: 120px;
   line-height: 120px;
-  font-size: 24px;
+  font-size: 18px;
 }
 #results .result.small .right .variable .top,
 #results .result.small .right .fixed .top,
