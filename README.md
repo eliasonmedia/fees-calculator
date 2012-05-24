@@ -1,12 +1,13 @@
 # Payment System Fees Calculator
 
 ## Introduction
-Since I started working at Dwolla it became clear to me that payment fees are really confusing. I put this calculator together so people could easily understand how different payment system fees compare.
+At Goodsmiths, we share a goal with payment systems like Dwolla - we want to simplify and reduce the transaction fees our customers pay. This calculator was originally coded by BaconSeason to allow anyone to easily understand how different payment system fees compare. The source code is freely available on Github.
 
 ## Disclaimer
-There are about 2000 different pricing models for different payment systems so the numbers could vary a little bit here or there. Bottom line: this tool is *not* 100% accurate, since you might qualify for some different pricing structure.
+Handmade merchant platforms and payment gateways have a lot of different pricing models, which means that the numbers could vary a little bit here and there. Bottom line: this tool is not 100% accurate, since you might qualify for some different pricing structure.
 
 ## Contact
 Questions? Comments? Concerns? Just feel like dropping me a line? Sweet.
 
-Let's chat: michael@dwolla.com
+Original fees-calculator (Dwolla): michael@dwolla.com
+Goodsmiths fees-calculator (Goodsmiths: eric.tjossem@goodsmiths.com
