@@ -282,7 +282,7 @@ var calc = function(amount, freq) {
 	}
 
 	// Insert page title
-	resultsBlock.append(type == 'annual' ? "<h2>How much you pay annually:</h2>" : "<h2>How much you pay per transaction:</h2>");
+	resultsBlock.append(type == 'annual' ? "<h2>How much you pay when these sales complete:</h2>" : "<h2>How much you pay per item:</h2>");
 
 	// Create elements for each payment gateway
 	for (var i = costs.length - 1; i >= 0; i--) {
