@@ -2,7 +2,7 @@
 #reset > .global-reset();
 
 html {
-	background: #F3E9CB url(../images/bg.png) repeat 0 0;
+	background: #545a69 url(../images/bg.png) repeat 0 0;
 	height: 100%;
 	width: 100%;
 }
@@ -116,6 +116,10 @@ body {
 		&.square .name { background: url(../images/square.png) no-repeat 50% 15px; }
 		&.avg .name { background: url(../images/creditcard.png) no-repeat 50% 15px; }
 		&.paypal .name { background: url(../images/paypal.png) no-repeat 50% 50%; }
+		&.ipn .name { background: url(../images/ipn.png) no-repeat 50% 5px; }
+		&.stripe .name { background: url(../images/stripe.png) no-repeat 50% 35px; }
+		&.samurai .name { background: url(../images/samurai.png) no-repeat 50% 33px; }
+		&.braintree .name { background: url(../images/braintree.png) no-repeat 50% 25px; }
 
 		.right {
 			float: left;
@@ -128,7 +132,7 @@ body {
 			border-bottom: 1px solid #9f9f9f;
 			.border-radius(0 10px 10px 0);
 
-			.merchant, .gateway, .freq, .total {
+			.variable, .fixed, .freq, .total {
 				.ellipsis;
 				position: relative;
 				float: left;
@@ -210,7 +214,7 @@ body {
 				height: 120px;
 				padding-left: 10px;
 
-				.merchant, .gateway, .total, .freq {
+				.variable, .fixed, .total, .freq {
 					width: 120px;
 
 					p {
@@ -259,7 +263,7 @@ body {
 			.plus, .eq, .times {
 				width: 35px;
 			}
-			.merchant, .gateway, .freq {
+			.variable, .fixed, .freq {
 				width: 135px;
 
 				p, .top, .bottom {
@@ -281,7 +285,7 @@ body {
 					width: 678px;
 				}
 
-				.merchant, .gateway, .total, .freq { 
+				.variable, .fixed, .total, .freq { 
 					width: 125px;
 
 					p, .top, .bottom {

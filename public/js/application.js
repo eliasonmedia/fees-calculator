@@ -19,7 +19,7 @@ var costs = [
 		label: 'Goodsmiths (PayPal)',
 		variable: 4.9,
 		fixed: 0.30,
-		url: 'https://www.goodsmiths.com/splash'
+		url: 'https://www.goodsmiths.com'
 	},
 	{
 		name: 'gs_dw',
@@ -121,6 +121,14 @@ $(function() {
 	// Focus the first visible amount input
 	$('.amount:visible')
 		.filter(':visible').focus();
+
+	// Auto format amount inputs
+	$('.amount').on('blur', function() {
+		var el = $(this),
+			val = (+parsePrice(el.val())).formatMoney(2, '.', ',');
+
+		el.val('$' + val);
+	});
 
 	// Was amount specifed in URL? Auto-trigger a calculation
 	if(window.location.hash.indexOf('#compare') !== -1) {
