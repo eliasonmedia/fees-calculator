@@ -479,18 +479,7 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
-#results .result .left .name h3 {
-  position: absolute;
-  bottom: 10px;
-  width: 200px;
-  color: #fff;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 20px;
-  text-shadow: rgba(1, 1, 1, 0.5) 0 1px 2px;
-  text-align: center;
-}
+
 #results .result.dwolla .name {
   background: url(../images/dwolla.png) no-repeat 50% 5px;
 }
@@ -515,20 +504,20 @@ body {
 #results .result.braintree .name {
   background: url(../images/braintree.png) no-repeat 50% 25px;
 }
-#results .result.etsy_pp .name {
-  background: url(../images/etsy_pp.png) no-repeat 50% 5px;
+#results .result.etsypp .name {
+  background: url(../images/etsy_pp.png) no-repeat 50% 15px;
 }
-#results .result.etsy_dc .name {
-  background: url(../images/etsy_dc.png) no-repeat 50% 5px;
+#results .result.etsydc .name {
+  background: url(../images/etsy_dc.png) no-repeat 50% 15px;
 }
-#results .result.gs_pp .name {
-  background: url(../images/gs_pp.png) no-repeat 50% 5px;
+#results .result.gspp .name {
+  background: url(../images/gs_pp.png) no-repeat 50% 15px;
 }
-#results .result.gs_pp .name {
-  background: url(../images/gs_dw.png) no-repeat 50% 5px;
+#results .result.gsdw .name {
+  background: url(../images/gs_dw.png) no-repeat 50% 15px;
 }
-#results .result.bon_all .name {
-  background: url(../images/bon_all.png) no-repeat 50% 5px;
+#results .result.bonall .name {
+  background: url(../images/bonanza_all.png) no-repeat 50% 15px;
 }
 
 #results .result .right {

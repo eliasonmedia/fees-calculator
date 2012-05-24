@@ -1,30 +1,30 @@
 // Define gateway prices
 var costs = [
 	{
-		name: 'etsy_pp',
-		label: 'Etsy (PayPal)',
+		name: 'etsypp',
+		label: '',
 		variable: 6.4,
 		fixed: 0.50,
 		url: 'http://www.etsy.com'
 	},
 	{
-		name: 'etsy_dc',
-		label: 'Etsy (Direct Checkout)',
+		name: 'etsydc',
+		label: '',
 		variable: 6.5,
 		fixed: 0.45,
 		url: 'http://www.etsy.com'
 	},
 	{
-		name: 'gs_pp',
-		label: 'Goodsmiths (PayPal)',
+		name: 'gspp',
+		label: '',
 		variable: 4.9,
 		fixed: 0.30,
-		url: 'https://www.goodsmiths.com'
+		url: 'http://goodsmiths.com'
 	},
 	{
-		name: 'gs_dw',
-		label: 'Goodsmiths (Dwolla)',
-		url: 'http://www.goodsmiths.com',
+		name: 'gsdw',
+		label: '',
+		url: 'http://goodsmiths.com',
 		variable: 2.0,
 		fixed: {
 			trigger: 10.01,
@@ -33,9 +33,9 @@ var costs = [
 		}
 	},
 	{
-		name: 'bon_all',
-		label: 'Bonanza (All Methods)',
-		url: 'http://www.bonanza.com',
+		name: 'bonall',
+		label: '',
+		url: 'http://bonanza.com',
 		variable: 6.4,
 		fixed: 0.30
 	}
@@ -228,7 +228,7 @@ var calc = function(amount, freq) {
 							'<div class="variable">' +
 								'<span class="top"></span>' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Variable Rate</span>' +
+								'<span class="bottom">Var Rate</span>' +
 							'</div>' +
 							'<div class="plus"><p>+</p></div>' +
 							'<div class="fixed">' +
