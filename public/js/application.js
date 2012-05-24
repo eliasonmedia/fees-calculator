@@ -252,17 +252,18 @@ var calc = function(amount, freq) {
 							'<div class="variable">' +
 								'<span class="top"></span>' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Variable</span>' +
+								'<span class="bottom">Craft Site</span>' +
 							'</div>' +
 							'<div class="plus"><p>+</p></div>' +
 							'<div class="fixed">' +
+								'<span class="top"></span>' +
 								'<p>$<span></span></p>' +
-								'<span class="bottom">Fixed</span>' +
+								'<span class="bottom">Payment Proc.</span>' +
 							'</div>' +
 							'<div class="times"><p>&times;</p></div>' +
 							'<div class="freq">' +
 								'<p><span></span></p>' +
-								'<span class="bottom">Frequency</span>' +
+								'<span class="bottom">Quantity</span>' +
 							'</div>' +
 							'<div class="eq"><p>=</p></div>' +
 							'<div class="total">' +
@@ -293,7 +294,11 @@ var calc = function(amount, freq) {
 		// Calc costs
 		var variable = ((costs[i].variable / 100) * amount),
 			isFixedObject = (typeof costs[i].fixed == 'object'),
-			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed) : 0;
+			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed) : 0,
+			isFixedObject = (typeof costs[i].mfixed == 'object'),
+			mfixed = ((isFixedObject && (amount >= costs[i].mfixed.trigger)) || typeof costs[i].mfixed == 'number') ? (isFixedObject ? costs[i].mfixed.cost : costs[i].mfixed) : 0,
+			isFixedObject = (typeof costs[i].gfixed == 'object'),
+			gfixed = ((isFixedObject && (amount >= costs[i].gfixed.trigger)) || typeof costs[i].gfixed == 'number') ? (isFixedObject ? costs[i].gfixed.cost : costs[i].gfixed) : 0;
 
 		// Compensate for Dwolla's max transaction amount
 		if (amount > costs[i].fixed.maxAmount) {
@@ -317,7 +322,10 @@ var calc = function(amount, freq) {
 				.text(costs[i].label)
 				.end()
 			.find('.variable .top')
-				.text(costs[i].variable.formatMoney(2, '.', ',') + '% * ' + amount + ' =')
+				.text(costs[i].mvar.formatMoney(2, '.', ',') + '% + ' + mfixed + ' =')
+				.end()
+			.find('.fixed .top')
+				.text(costs[i].gvar.formatMoney(2, '.', ',') + '% + ' + gfixed + ' =')
 				.end()
 			.find('.variable p span')
 				.text(variable.formatMoney(2, '.', ','))

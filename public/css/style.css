@@ -377,7 +377,7 @@ body {
   display: none;
 }
 #social {
-  padding: 20px 0 30px;
+  padding: 20px 0 10px;
   text-align: center;
 }
 #social .fb-like {
@@ -502,22 +502,22 @@ body {
   background: url(../images/samurai.png) no-repeat 50% 33px;
 }
 #results .result.braintree .name {
-  background: url(../images/braintree.png) no-repeat 50% 25px;
+  background: url(../images/braintree.png) no-repeat 50% 30px;
 }
 #results .result.etsypp .name {
-  background: url(../images/etsy_pp.png) no-repeat 50% 18px;
+  background: url(../images/etsy_pp.png) no-repeat 50% 30px;
 }
 #results .result.etsydc .name {
-  background: url(../images/etsy_dc.png) no-repeat 50% 18px;
+  background: url(../images/etsy_dc.png) no-repeat 50% 30px;
 }
 #results .result.gspp .name {
-  background: url(../images/gs_pp.png) no-repeat 50% 18px;
+  background: url(../images/gs_pp.png) no-repeat 50% 30px;
 }
 #results .result.gsdw .name {
-  background: url(../images/gs_dw.png) no-repeat 50% 18px;
+  background: url(../images/gs_dw.png) no-repeat 50% 30px;
 }
 #results .result.bonall .name {
-  background: url(../images/bonanza_all.png) no-repeat 50% 18px;
+  background: url(../images/bonanza_all.png) no-repeat 50% 30px;
 }
 
 #results .result .right {
@@ -670,6 +670,47 @@ body {
   width: 180px;
   height: 120px;
 }
+
+#results .result.dwolla .name {
+  background: url(../images/dwolla.png) no-repeat 50% 5px;
+}
+#results .result.square .name {
+  background: url(../images/square.png) no-repeat 50% 15px;
+}
+#results .result.avg .name {
+  background: url(../images/creditcard.png) no-repeat 50% 15px;
+}
+#results .result.paypal .name {
+  background: url(../images/paypal.png) no-repeat 50% 50%;
+}
+#results .result.ipn .name {
+  background: url(../images/ipn.png) no-repeat 50% 5px;
+}
+#results .result.stripe .name {
+  background: url(../images/stripe.png) no-repeat 50% 35px;
+}
+#results .result.samurai .name {
+  background: url(../images/samurai.png) no-repeat 50% 33px;
+}
+#results .result.braintree .name {
+  background: url(../images/braintree.png) no-repeat 50% 25px;
+}
+#results .result.small.etsypp .name {
+  background: url(../images/etsy_pp.png) no-repeat 50% 18px;
+}
+#results .result.small.etsydc .name {
+  background: url(../images/etsy_dc.png) no-repeat 50% 18px;
+}
+#results .result.small.gspp .name {
+  background: url(../images/gs_pp.png) no-repeat 50% 18px;
+}
+#results .result.small.gsdw .name {
+  background: url(../images/gs_dw.png) no-repeat 50% 18px;
+}
+#results .result.small.bonall .name {
+  background: url(../images/bonanza_all.png) no-repeat 50% 18px;
+}
+
 #results .result.small .left h3 {
   width: 180px;
 }
