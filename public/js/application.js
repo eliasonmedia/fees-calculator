@@ -9,7 +9,8 @@ var costs = [
 		mfixed: 0.40,
 		gvar: 2.9,
 		gfixed: 0.30,
-		url: 'http://www.etsy.com'
+		url: 'http://www.etsy.com',
+		subfee: 0.0
 	},
 	{
 		name: 'etsydc',
@@ -20,7 +21,8 @@ var costs = [
 		mfixed: 0.40,
 		gvar: 3.0,
 		gfixed: 0.25,
-		url: 'http://www.etsy.com'
+		url: 'http://www.etsy.com',
+		subfee: 0.0
 	},
 	{
 		name: 'gspp',
@@ -31,12 +33,13 @@ var costs = [
 		mfixed: 0.0,
 		gvar: 2.9,
 		gfixed: 0.30,
-		url: 'http://goodsmiths.com'
+		url: 'http://www.goodsmiths.com',
+		subfee: 0.0
 	},
 	{
 		name: 'gsdw',
 		label: '',
-		url: 'http://goodsmiths.com',
+		url: 'http://www.goodsmiths.com',
 		variable: 2.0,
 		fixed: {
 			trigger: 10.01,
@@ -50,18 +53,44 @@ var costs = [
 			trigger: 10.01,
 			cost: 0.25,
 			maxAmount: 5000
-		}
+		},
+		subfee: 0.0
 	},
 	{
 		name: 'bonall',
 		label: '',
-		url: 'http://bonanza.com',
+		url: 'http://www.bonanza.com',
 		variable: 6.4,
 		fixed: 0.30,
 		mvar: 3.5,
 		mfixed: 0.0,
 		gvar: 2.9,
-		gfixed: 0.30
+		gfixed: 0.30,
+		subfee: 0.0
+	},
+	{
+		name: 'afall',
+		label: '',
+		url: 'http://www.artfire.com',
+		variable: 0.0,
+		fixed: 0.30,
+		mvar: 0.0,
+		mfixed: 0.0,
+		gvar: 2.9,
+		gfixed: 0.30,
+		subfee: 12.95
+	},
+	{
+		name: 'bcpp',
+		label: '',
+		url: 'http://www.bigcartel.com',
+		variable: 2.9,
+		fixed: 0.30,
+		mvar: 0.0,
+		mfixed: 0.0,
+		gvar: 2.9,
+		gfixed: 0.30,
+		subfee: 9.99
 	}
 ];
 
@@ -267,6 +296,7 @@ var calc = function(amount, freq) {
 							'</div>' +
 							'<div class="eq"><p>=</p></div>' +
 							'<div class="total">' +
+								'<span class="top"></span>' +
 								'<p>$<span></span></p>' +
 								'<span class="bottom">Total Fees</span>' +
 							'</div>' +
@@ -282,7 +312,7 @@ var calc = function(amount, freq) {
 	}
 
 	// Insert page title
-	resultsBlock.append(type == 'annual' ? "<h2>How much you pay when these sales complete:</h2>" : "<h2>How much you pay per item:</h2>");
+	resultsBlock.append(type == 'annual' ? "<h2>How much you pay per month:</h2>" : "<h2>How much you pay to sell one item:</h2>");
 
 	// Create elements for each payment gateway
 	for (var i = costs.length - 1; i >= 0; i--) {
@@ -305,12 +335,20 @@ var calc = function(amount, freq) {
 			fixed *= Math.ceil(amount / costs[i].fixed.maxAmount);
 		}
 
-		// Calculate final total
-		var total = (+variable + +fixed);
+		// Store some vars
+		var subfee = (costs[i].subfee);
+		var craftsite = (((costs[i].mvar / 100) * amount) + mfixed);
+		var processor = (((costs[i].gvar / 100) * amount) + gfixed);
 
-		// Compensate for annual recurring transactions
+		// Calculate final total
+		var total = (+craftsite + +processor);
+
+		// Calculate monthly transactions and subscription fees
 		if(type == 'annual') {
-			total = total * freq;
+			total = (total * freq + (costs[i].subfee));
+		}
+		if(type == 'single') {
+			total = (total + (costs[i].subfee));
 		}
 
 		result
@@ -322,16 +360,19 @@ var calc = function(amount, freq) {
 				.text(costs[i].label)
 				.end()
 			.find('.variable .top')
-				.text(costs[i].mvar.formatMoney(2, '.', ',') + '% + ' + mfixed + ' =')
+				.text(costs[i].mvar.formatMoney(2, '.', ',') + '% + $' + mfixed.formatMoney(2, '.', ',') + ' =')
 				.end()
 			.find('.fixed .top')
-				.text(costs[i].gvar.formatMoney(2, '.', ',') + '% + ' + gfixed + ' =')
+				.text(costs[i].gvar.formatMoney(2, '.', ',') + '% + $' + gfixed.formatMoney(2, '.', ',') + ' =')
+				.end()
+			.find('.total .top')
+				.text('w/sub. fee of $' + subfee.formatMoney(2, '.', ',') + ' =')
 				.end()
 			.find('.variable p span')
-				.text(variable.formatMoney(2, '.', ','))
+				.text(craftsite.formatMoney(2, '.', ','))
 				.end()
 			.find('.fixed p span')
-				.text(fixed.formatMoney(2, '.', ','))
+				.text(processor.formatMoney(2, '.', ','))
 				.end()
 			.find('.freq p span')
 				.text(freq)

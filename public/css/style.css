@@ -519,6 +519,12 @@ body {
 #results .result.bonall .name {
   background: url(../images/bonanza_all.png) no-repeat 50% 30px;
 }
+#results .result.afall .name {
+  background: url(../images/artfire_all.jpg) no-repeat 50% 30px;
+}
+#results .result.bcpp .name {
+  background: url(../images/bigcartel_pp.jpg) no-repeat 50% 30px;
+}
 
 #results .result .right {
   float: left;
@@ -709,6 +715,12 @@ body {
 }
 #results .result.small.bonall .name {
   background: url(../images/bonanza_all.png) no-repeat 50% 18px;
+}
+#results .result.small.afall .name {
+  background: url(../images/artfire_all.jpg) no-repeat 50% 18px;
+}
+#results .result.small.bcpp .name {
+  background: url(../images/bigcartel_pp.jpg) no-repeat 50% 18px;
 }
 
 #results .result.small .left h3 {
