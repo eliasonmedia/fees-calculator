@@ -333,7 +333,7 @@ var calc = function(amount, freq) {
 		result
 			.find('.name')
 				.attr('href', costs[i].url)
-				.attr('title', 'Checkout ' + costs[i].label + "'s site")
+				.attr('title', 'Check out this site.')
 				.end()
 			.find('.name h3')
 				.text(costs[i].label)
@@ -345,7 +345,7 @@ var calc = function(amount, freq) {
 				.text(costs[i].gvar.formatMoney(2, '.', ',') + '% + $' + gfixed.formatMoney(2, '.', ',') + ' =')
 				.end()
 			.find('.total .top')
-				.text('w/sub. fees of $' + subfee.formatMoney(2, '.', ',') + ' =')
+				.text('w/$' + subfee.formatMoney(2, '.', ',') + ' sub. fees:')
 				.end()
 			.find('.variable p span')
 				.text(craftsite.formatMoney(2, '.', ','))

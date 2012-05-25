@@ -35,11 +35,11 @@
 
 				<h3>Use this tool to determine what you will pay to sell your handmade goods on popular craft sites using different payment methods.</h3>
 
-				<label>How many items are you selling?</label>
+				<label>How many sales should we calculate?</label>
 	            <div class="toggle_button_wrapper">
 	                <div class="toggle_button">
 	                	<input id="trans-type" type="hidden" value="single">
-	                    <a href="javascript:void(0);" val="single" class="side_one pressed"><span>Single Item</span></a>
+	                    <a href="javascript:void(0);" val="single" class="side_one pressed"><span>Single Sale</span></a>
 	                    <a href="javascript:void(0);" val="annual" class="side_two"><span>Monthly Sales</span></a>
 	                </div>
 	            </div>
@@ -53,7 +53,7 @@
 					<input type="text" class="amount" value="$10.00" />
 
 					<label for="freq">How many do you sell per month?</label>
-					<input type="text" id="freq" value="10" />
+					<input type="text" id="freq" value="40" />
 	            </div>
 
 				<button type="button" id="calc-btn">Compare!<span class="arrow"></span></button>
@@ -63,9 +63,11 @@
 			<div id="about" class="page">
 				<h1>About</h1>
 
-				<h3>At <a href="http://twitter.com/goodsmiths">Goodsmiths</a>, we share a goal with payment systems like <a href="http://www.dwolla.com">Dwolla</a> - we want to simplify and reduce the transaction fees our customers pay. This calculator was originally coded by <a href="http://twitter.com/BaconSeason">BaconSeason</a> to allow anyone to easily understand how different payment system fees compare.</h3>
+				<h3>At <a href="http://twitter.com/goodsmiths">Goodsmiths</a>, we share a goal with payment systems like <a href="http://www.dwolla.com">Dwolla</a> - we want to simplify and reduce the transaction fees our customers pay. We've both worked hard on this tool to allow anyone to easily understand how different fee systems compare.</h3>
 
-				<h3>Handmade merchant platforms and payment gateways have a lot of different pricing models, which means that the numbers could vary a little bit here and there. Bottom line: this tool is <b>not</b> 100% accurate, since you might qualify for some different pricing structure. The source code is freely available on <a href="https://github.com/eliasonmedia/fees-calculator">Github</a>.</h3>
+				<h3>This calculator factors in four types of fee: percentage commissions on the total price, flat transaction fees, listing fees, and monthly subscription fees. Handmade merchant platforms and payment gateways can have many different pricing models, so it may be wise to check the official sites of each company to confirm your results.</h3>
+
+				<h3>This calculator was originally coded by Michael at Dwolla to allow anyone to easily understand how different payment system fees compare, then modified by Eric at Goodsmiths for the needs of the handmade community. The source code is freely available on <a href="https://github.com/eliasonmedia/fees-calculator">Github</a>.</h3>
 
 				<p>Back to the <a href="javascript:void(0);" id="calculator-link">Calculator</a> | &copy; <a href="http://twitter.com/Goodsmiths" target="_blank">@Goodsmiths</a> 2012</p>
 			</div>

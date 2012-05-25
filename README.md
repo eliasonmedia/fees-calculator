@@ -1,13 +1,13 @@
-# Payment System Fees Calculator
+# Handmade Fees Calculator
 
-## Introduction
-At Goodsmiths, we share a goal with payment systems like Dwolla - we want to simplify and reduce the transaction fees our customers pay. This calculator was originally coded by BaconSeason to allow anyone to easily understand how different payment system fees compare, then modified by etjossem for handmade goods. The source code is freely available on Github.
+## Summary
+At Goodsmiths, we share a goal with payment systems like Dwolla - we want to simplify and reduce the transaction fees our customers pay. We've both worked hard on this tool to allow anyone to easily understand how different fee systems compare.
 
-## Disclaimer
-Handmade merchant platforms and payment gateways have a lot of different pricing models, which means that the numbers could vary a little bit here and there. Bottom line: this tool is not 100% accurate, since you might qualify for some different pricing structure.
+This calculator factors in four types of fee: percentage commissions on the total price, flat transaction fees, listing fees, and monthly subscription fees. Handmade merchant platforms and payment gateways can have many different pricing models, so it may be wise to check the official sites of each company to confirm your results.
 
-## Contact
+## Developers
+This calculator was originally coded by Michael at Dwolla, then modified by Eric at Goodsmiths for the needs of the handmade community. The source code is freely available on Github.
 
 Original fees-calculator (Dwolla): michael@dwolla.com
 
-Goodsmiths fees-calculator (Goodsmiths): eric.tjossem@goodsmiths.com
+Handmade fees-calculator (Goodsmiths): eric.tjossem@goodsmiths.com
