@@ -3,8 +3,6 @@ var costs = [
 	{
 		name: 'etsypp',
 		label: '',
-		variable: 6.4,
-		fixed: 0.50,
 		mvar: 3.5,
 		mfixed: 0.40,
 		gvar: 2.9,
@@ -15,8 +13,6 @@ var costs = [
 	{
 		name: 'etsydc',
 		label: '',
-		variable: 6.5,
-		fixed: 0.45,
 		mvar: 3.5,
 		mfixed: 0.40,
 		gvar: 3.0,
@@ -27,8 +23,6 @@ var costs = [
 	{
 		name: 'gspp',
 		label: '',
-		variable: 4.9,
-		fixed: 0.30,
 		mvar: 2.0,
 		mfixed: 0.0,
 		gvar: 2.9,
@@ -40,12 +34,6 @@ var costs = [
 		name: 'gsdw',
 		label: '',
 		url: 'http://www.goodsmiths.com',
-		variable: 2.0,
-		fixed: {
-			trigger: 10.01,
-			cost: 0.25,
-			maxAmount: 5000
-		},
 		mvar: 2.0,
 		mfixed: 0.0,
 		gvar: 0.0,
@@ -60,8 +48,6 @@ var costs = [
 		name: 'bonall',
 		label: '',
 		url: 'http://www.bonanza.com',
-		variable: 6.4,
-		fixed: 0.30,
 		mvar: 3.5,
 		mfixed: 0.0,
 		gvar: 2.9,
@@ -72,8 +58,6 @@ var costs = [
 		name: 'afall',
 		label: '',
 		url: 'http://www.artfire.com',
-		variable: 0.0,
-		fixed: 0.30,
 		mvar: 0.0,
 		mfixed: 0.0,
 		gvar: 2.9,
@@ -84,8 +68,6 @@ var costs = [
 		name: 'bcpp',
 		label: '',
 		url: 'http://www.bigcartel.com',
-		variable: 2.9,
-		fixed: 0.30,
 		mvar: 0.0,
 		mfixed: 0.0,
 		gvar: 2.9,
@@ -322,17 +304,14 @@ var calc = function(amount, freq) {
 			});
 
 		// Calc costs
-		var variable = ((costs[i].variable / 100) * amount),
-			isFixedObject = (typeof costs[i].fixed == 'object'),
-			fixed = ((isFixedObject && (amount >= costs[i].fixed.trigger)) || typeof costs[i].fixed == 'number') ? (isFixedObject ? costs[i].fixed.cost : costs[i].fixed) : 0,
-			isFixedObject = (typeof costs[i].mfixed == 'object'),
+		var isFixedObject = (typeof costs[i].mfixed == 'object'),
 			mfixed = ((isFixedObject && (amount >= costs[i].mfixed.trigger)) || typeof costs[i].mfixed == 'number') ? (isFixedObject ? costs[i].mfixed.cost : costs[i].mfixed) : 0,
 			isFixedObject = (typeof costs[i].gfixed == 'object'),
 			gfixed = ((isFixedObject && (amount >= costs[i].gfixed.trigger)) || typeof costs[i].gfixed == 'number') ? (isFixedObject ? costs[i].gfixed.cost : costs[i].gfixed) : 0;
 
 		// Compensate for Dwolla's max transaction amount
-		if (amount > costs[i].fixed.maxAmount) {
-			fixed *= Math.ceil(amount / costs[i].fixed.maxAmount);
+		if (amount > costs[i].gfixed.maxAmount) {
+			gfixed *= Math.ceil(amount / costs[i].gfixed.maxAmount);
 		}
 
 		// Store some vars
@@ -366,7 +345,7 @@ var calc = function(amount, freq) {
 				.text(costs[i].gvar.formatMoney(2, '.', ',') + '% + $' + gfixed.formatMoney(2, '.', ',') + ' =')
 				.end()
 			.find('.total .top')
-				.text('w/sub. fee of $' + subfee.formatMoney(2, '.', ',') + ' =')
+				.text('w/sub. fees of $' + subfee.formatMoney(2, '.', ',') + ' =')
 				.end()
 			.find('.variable p span')
 				.text(craftsite.formatMoney(2, '.', ','))
