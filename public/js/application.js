@@ -65,7 +65,7 @@ var costs = [
 		subfee: 12.95
 	},
 	{
-		name: 'bcpp', // Please keep at position 6 in this array for tier logic.
+		name: 'bcpp', // Please keep at the end of this array for tier logic.
 		label: '',
 		url: 'http://www.bigcartel.com',
 		mvar: 0.0,
@@ -297,26 +297,26 @@ var calc = function(amount, freq) {
 	resultsBlock.append(type == 'annual' ? "<h2>How much you pay per month:</h2>" : "<h2>How much you pay to sell one item:</h2>");
 
 	// Calculate BigCartel's tiered subfees in annual query. 
-	// BigCartel should remain at costs[6].
+	// BigCartel should remain at the end of the array.
 	// If freq is greater than 300, strip BC from the list.
 
 	var listlength = (costs.length - 1);
 
 	if (type == 'annual') {
 				if (freq > 300) {
-					listlength = (costs.length - 2);
+						listlength = (costs.length - 2);
 					}
-				if (freq <= 5) {
-					costs[6].subfee = (0.0);
+				else if (freq <= 5) {
+						costs[listlength].subfee = (0.0);
 					}
-				if (freq > 5 && freq <= 25) {
-						costs[6].subfee = (9.99);
+				else if (freq > 5 && freq <= 25) {
+						costs[listlength].subfee = (9.99);
 					}
-				if (freq > 25 && freq <= 100) {
-						costs[6].subfee = (19.99);
+				else if (freq > 25 && freq <= 100) {
+						costs[listlength].subfee = (19.99);
 					}
-				if (freq > 100 && freq <= 300) {
-						costs[6].subfee = (29.99);
+				else if (freq > 100 && freq <= 300) {
+						costs[listlength].subfee = (29.99);
 					}
 				}
 
