@@ -65,7 +65,7 @@ var costs = [
 		subfee: 12.95
 	},
 	{
-		name: 'bcpp',
+		name: 'bcpp', // Please keep at position 6 in this array for tier logic.
 		label: '',
 		url: 'http://www.bigcartel.com',
 		mvar: 0.0,
@@ -296,8 +296,33 @@ var calc = function(amount, freq) {
 	// Insert page title
 	resultsBlock.append(type == 'annual' ? "<h2>How much you pay per month:</h2>" : "<h2>How much you pay to sell one item:</h2>");
 
+	// Calculate BigCartel's tiered subfees in annual query. 
+	// BigCartel should remain at costs[6].
+	// If freq is greater than 300, strip BC from the list.
+
+	var listlength = (costs.length - 1);
+
+	if (type == 'annual') {
+				if (freq > 300) {
+					listlength = (costs.length - 2);
+					}
+				if (freq <= 5) {
+					costs[6].subfee = (0.0);
+					}
+				if (freq > 5 && freq <= 25) {
+						costs[6].subfee = (9.99);
+					}
+				if (freq > 25 && freq <= 100) {
+						costs[6].subfee = (19.99);
+					}
+				if (freq > 100 && freq <= 300) {
+						costs[6].subfee = (29.99);
+					}
+				}
+
+
 	// Create elements for each payment gateway
-	for (var i = costs.length - 1; i >= 0; i--) {
+	for (var i = listlength; i >= 0; i--) {
 		var result = $('<div/>', {
 				'class': 'result ' + costs[i].name,
 				'html': resultBlock
@@ -323,10 +348,10 @@ var calc = function(amount, freq) {
 		var total = (+craftsite + +processor);
 
 		// Calculate monthly transactions and subscription fees
-		if(type == 'annual') {
+		if (type == 'annual') {
 			total = (total * freq + (costs[i].subfee));
 		}
-		if(type == 'single') {
+		if (type == 'single') {
 			total = (total + (costs[i].subfee));
 		}
 
