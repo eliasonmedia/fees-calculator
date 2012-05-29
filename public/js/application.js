@@ -286,7 +286,6 @@ var calc = function(amount, freq) {
 
 	// Push to the history stack
 	var url = "/#compare/" + type + '/' + amount + '/' + freq;
-	window.history.pushState({}, "Compare Fees", url);
 
 	// Track this
 	if(clicky) {
